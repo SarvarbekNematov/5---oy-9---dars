@@ -28,11 +28,18 @@ const renderLocalData = () => {
 
 container.addEventListener("click", (e) => {
   if(e.target.dataset.id){
+    let arr = []
     const data = getState("product");
-      data.filter((value) => value.id !== e.target.dataset.id)
-      saveState("product", data)
-        renderLocalData("product")
-    
+      // data.filter((value) => value.id !== e.target.dataset.id)
+      // saveState("product", data);
+      //   renderLocalData();
+      data.map((item) => {
+        if(item.id !== e.target.dataset.id){
+          arr.push(item)
+        }
+      })
+      saveState("product", arr);
+      renderLocalData()
   }
   console.log(e.target.dataset.id);
 })
